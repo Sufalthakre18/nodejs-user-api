@@ -3,7 +3,7 @@
 // ============================================================
 
 import express from "express";
-import users from "../data/users.js";
+import {users} from "../data/users.js";
 import validateUser from "../middleware/validateUser.js";
 
 const router = express.Router();

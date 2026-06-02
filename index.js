@@ -3,6 +3,8 @@
 // ============================================================
 
 import express from "express";
+import userRoutes from "./routes/userRoutes.js";
+import requestLogger from "./middleware/requestLogger.js";
 
 const app = express();
 const PORT = 3000;
@@ -11,8 +13,13 @@ const PORT = 3000;
 // Parse incoming JSON request bodies
 app.use(express.json());
 
+// ── Custom middleware ────────────────────────────────────────
+// Log every request (method, URL, status code, response time)
+app.use(requestLogger);
 
-
+// ── Routes ──────────────────────────────────────────────────
+// Mount all /users and /user routes
+app.use("/", userRoutes);
 
 // ── 404 handler – unknown routes ────────────────────────────
 app.use((req, res) => {
